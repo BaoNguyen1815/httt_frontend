@@ -16,12 +16,6 @@ import OrderScreenComponent from "screens/dashboard/order/component";
 import ProductScreenComponent from "screens/dashboard/product/component";
 import UserScreenComponent from "screens/dashboard/user/component";
 import LoginComponent from "screens/login";
-import AlertsSettingControl from "screens/settings/alearts-setting";
-import ApiControls from "screens/settings/api-setting";
-import SettingsComponent from "screens/settings/component";
-import DetailSettingControls from "screens/settings/details-setting/component";
-import SecurityControls from "screens/settings/security-setting";
-import VerificationSettingControls from "screens/settings/verification-setting";
 import StatsComponent from "screens/stats/component";
 import "./assets/scss/main.scss";
 import configureStore from "./boot/configureStore";
@@ -57,14 +51,7 @@ ReactDOM.render(
           <Route path="/stats">
             <Route exact path="/stats" component={StatsComponent} />
           </Route>
-          <Route path="/settings-page">
-            <Route exact path="/settings-page" component={SettingsComponent} />
-            <Route exact path="/settings-page/details" component={DetailSettingControls} />
-            <Route exact path="/settings-page/verification" component={VerificationSettingControls} />
-            <Route exact path="/settings-page/security" component={SecurityControls} />
-            <Route exact path="/settings-page/alerts" component={AlertsSettingControl} />
-            <Route exact path="/settings-page/api" component={ApiControls} />
-          </Route>
+          <Route path="/settings-page"></Route>
           <Route component={Page404Component} />
         </Switch>
       </ConnectedRouter>
