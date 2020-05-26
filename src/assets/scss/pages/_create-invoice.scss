@@ -1,0 +1,89 @@
+.invoice-description {
+  .description-input {
+    margin-bottom: 100px;
+    .wrap {
+      .input-row {
+        flex-wrap: wrap-reverse;
+        div {
+          .current-input {
+            & + label {
+              &.active {
+                top: -10px;
+              }
+            }
+          }
+          textarea {
+            padding: 9.6px 0 6.4px;
+            margin: 0;
+            overflow: auto;
+            & + label {
+              background-color: white;
+              position: absolute;
+              width: 100%;
+              padding-bottom: 2px;
+            }
+          }
+          div {
+            div {
+              .wrap-button {
+                height: 100%;
+                width: 100%;
+                div {
+                  height: 100%;
+                  width: 100%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: flex-end;
+                  button {
+                    box-shadow: none;
+                    margin: 0;
+                    padding: 0;
+                    width: 36px;
+                    height: 36px;
+                    border-radius: 50%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .description-total {
+    .justify-end {
+      display: flex;
+      justify-content: flex-end;
+      .wrap {
+        display: flex;
+        flex-direction: row;
+        .left-side {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: flex-start;
+          p {
+            font-weight: bold;
+          }
+        }
+        .right-side {
+          padding-left: 15px;
+          text-align: right;
+          input {
+            width: 70px;
+            text-align: right;
+          }
+          label {
+            position: absolute;
+            right: 0;
+            &.active {
+              transform: scale(1) !important;
+              font-size: 13px;
+              top: -5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

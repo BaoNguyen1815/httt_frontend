@@ -1,0 +1,14 @@
+// import React from 'react';
+// import {
+//   MDBContainer
+// } from "mdbreact";
+
+// const listClientTable = props => {
+//   console.log(props)
+//   return (
+//     <MDBContainer>
+//     </MDBContainer>
+//   );
+// }
+
+// export default listClientTable;

@@ -1,0 +1,17 @@
+.login-page{
+  .card-rotating{
+    .card {
+      min-height: 500px;
+    }
+    .md-form{
+      .checkbox-remember{
+        .form-check {
+          display: flex;
+        }
+      }
+      .prefix {
+        left: 0;
+      }
+    }
+  }
+}

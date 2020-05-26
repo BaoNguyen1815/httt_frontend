@@ -1,0 +1,64 @@
+.input-default {
+  box-sizing: content-box;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  border-radius: 0;
+  outline: none;
+  box-shadow: none;
+  transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+}
+.react-tel-input.phone-input {
+  .form-control {
+    @extend .input-default;
+    width: calc(100% - 60px);
+    margin-left: 0;
+  }
+  .flag-dropdown{
+    border: none;
+    background-color: white;
+    border-bottom: 1px solid #ced4da;
+  }
+}
+
+.progress.progress-input {
+  margin-left: 2.5rem;
+  border-radius: 0;
+}
+.form-date-picker {
+  position: relative;
+  margin-bottom: 1.5rem;
+  label {
+    padding-left: .3rem;
+    margin-top: 0.4rem;
+    font-weight: 300;
+    font-size: 1rem;
+    color: #757575;
+  }
+}
+.react-datepicker-wrapper {
+  width: 100%;
+  .date-picker {
+    box-sizing: content-box;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 0;
+    outline: none;
+    box-shadow: none;
+    transition: border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out;
+    width: 100%;
+
+  }
+}
+
+// .detail-page-validation {
+//   button{
+//     :last-child{
+//       float: right;
+//       margin-top: 30px;
+//       padding-left: 20px;
+//       padding-right: 20px;
+//     }
+//   }
+// }

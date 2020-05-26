@@ -1,0 +1,117 @@
+.setting-page {
+  .nav li a.active {
+    color: rgba(255, 255, 255, 0.7) !important;
+    border-bottom: 3px solid transparent !important;
+  }
+
+  .nav li a.rewrite-active {
+    color: #fff !important;
+    border-bottom: 3px solid !important;
+  }
+
+  .tab-content {
+    .tab-pane {
+      .card {
+        .card-header {
+          p {
+            font-size: 1.25rem;
+          }
+        }
+
+        .card-body {
+          padding-left: 3rem;
+        }
+      }
+    }
+    .modal-content {
+      .card-body {
+        padding: 1.25rem !important;
+      }
+    }
+  }
+
+  button {
+    .preloader-wrapper {
+      position: absolute !important;
+      width: 20px !important;
+      height: 20px !important;
+      top: 10px !important;
+      right: 4px !important;
+      margin-top: 2px;
+
+      .spinner-layer {
+        border-color: white;
+      }
+    }
+  }
+
+  .alert-label {
+    button {
+      top: 12px;
+      position: absolute;
+      right: 15px;
+    }
+  }
+
+  .api-tab, .alert {
+    .card{
+      .card-header {
+        color: #4285f4 !important;
+      }
+      border-bottom: 0!important;
+     .card-body {
+     
+     } 
+    }
+  }
+  .col-3.title{
+    line-height: 88px;
+  }
+
+  .mt-15{
+    margin-top: 15px !important;
+  }
+  span.fake-label {
+    text-align: left;
+    width: max-content;
+    font-size: 11px;
+    left: 0px;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: -25px;
+    color: #757575;
+}
+}
+
+ul.dropdown-content {
+  .md-form {
+    margin-top: 1rem;
+    margin-bottom: 0rem;
+  }
+}
+
+input:disabled {
+  // background-color: #ccc !important;
+}
+
+.invalid-fb {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: 80%;
+  color: #dc3545;
+}
+.gauth-access {
+  .card {
+    border-bottom: none !important;
+  }
+}
+.country-label {
+  text-align: left;
+    width: max-content;
+    font-size: 11px;
+    left: 0px;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: -25px;
+    color: #757575;
+}

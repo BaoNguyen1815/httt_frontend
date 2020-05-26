@@ -1,0 +1,263 @@
+.bank-wallet{
+  .rdt_Table {
+    height: fit-content !important;
+  }
+  .badge-pill {
+    padding-right: .8em;
+    padding-left: .8em;
+    border-radius: 10rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-shadow: none;
+  }
+  .remove-emp{
+    cursor: pointer;
+      position: absolute;
+      right: 0px;
+      top: 40%;
+  }
+  .tag-plus {
+    cursor: pointer;
+      i{ font-size: 8px;}
+  }
+  .allocation-input[disabled]{
+    background:#dcdcdc;
+  }
+  .allocation-detail{
+    text-align: center;
+  }
+  .allocation-input {
+    // display: block;
+    width: 50%;
+    height: 35px;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    margin-top: 15px; margin-bottom: 15px;
+  }
+  .err-percent {
+    position: absolute;
+    bottom: 1px;
+    font-size: 12px;
+    left: 5%;
+  }
+  .border-red {
+    border: 1px solid #f44336 !important;
+  }
+  .show {
+    z-index:1;
+  }
+  button.btn-flat {
+    text-transform: capitalize;
+  }
+  .chips{
+    :first-child{
+      white-space: normal !important;
+    }
+  }
+  .tag-added{
+    input{
+      display: none;
+    }
+  }
+}
+// Modal 
+.add-bank-modal {
+  .md-form {
+    margin-bottom: 1.5rem !important;
+  }
+  .stepper-vertical li .step-content {
+      &::after {
+        position: absolute;
+        top: 3.44rem;
+        left: 2.4rem;
+        width: 1px;
+        height: calc(100% - 40px);
+        content: "";
+        background-color: rgba(0,0,0,0.1);
+    }
+  }
+  .btn-continue-add {
+    float: left;
+    margin-left: 0px;
+  }
+}
+.verify-bank {
+  .md-form {
+    width: 100%;
+  }
+}
+.chips-tag {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .chips {
+    min-height: 32px !important; 
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+    .chip{
+      height: 25px !important;
+      line-height: 25px !important;
+      font-size: 12px !important;
+      padding: 0 8px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      .close {
+        float: right;
+        padding-left: 5px;
+        font-size: 13px;
+        line-height: 25px;
+        cursor: pointer;
+        transition: all .1s linear;
+      }
+    }
+  }
+  :first-child{
+    white-space: normal !important;
+  }
+}
+.bit-add-modal {
+  .modal-body {
+    button {
+      float: left;
+    }
+  }
+  .index {
+    line-height: 60px;
+    text-align: left;
+  }
+  br {
+    clear: both;
+  }
+}
+.modal-1000 {
+  .md-form {
+    .invalid-feedback {
+      position: absolute;
+      margin-top: 0px;
+    }
+  }
+  .country-bank {
+    ul{
+      li{
+        display: inline-block;
+        img{
+          float: left;
+        }
+        span{
+          text-align: left !important;
+        }
+      }
+    }
+  }
+    ::-webkit-input-placeholder { /* Edge */
+      // font-size: 14px;
+      color: rgba(73, 80, 87, 0.3) !important;
+    }
+    
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+      // font-size: 14px;
+      color: rgba(73, 80, 87, 0.3) !important;
+    }
+    
+    ::placeholder {
+      // font-size: 14px;
+      color: rgba(73, 80, 87, 0.3) !important;
+    }
+}
+.csv-download {
+  float: left;
+}
+
+
+// add invoice
+.create-invoice {
+  .card {
+    margin-bottom: 50px;
+  }
+  .testimonial-card {
+    box-shadow: none !important;
+    .avatar{
+      height: 180px !important;
+      width: 180px !important;
+      margin-top: -20px;
+    }
+  }
+  .invoice-detail {
+    padding: 4rem 2rem 5rem 2rem;
+  }
+  .logo-invoice {
+    .file-path-wrapper {
+      display: none;
+      
+    }
+    .file-field {
+      text-align: center;
+    }
+    .btn-sm {
+      float: none !important;
+      margin-top: -55px;
+    }
+  }
+  .invoice-number {
+    font-size: 19px;
+  }
+  .invoice-date {
+    font-size: 17px;
+  }
+  .select-client-invoice {
+    margin: 0px;
+    position: absolute;
+    top: -15px;
+    width: 100%;
+  }
+  .form-check-input[type="checkbox"].filled-in:checked+label:after, 
+   label.btn input[type="checkbox"].filled-in:checked+label:after {
+    background-color: #4285f4;
+    border: 2px solid #4285f4;
+    top: 3px;
+  }
+  .form-check-input[type="checkbox"].filled-in:checked+label:before{
+    top: 2px
+  }
+  .form-check-input[type="checkbox"].filled-in:not(:checked)+label:after {
+    top: 3px;
+  }
+  .form-check {
+    padding-left: 0px;
+  }
+  .is-greyed-out {
+    cursor: pointer;
+    .note-secondary{
+      border-color: #e2e3e5;
+    }
+  }
+  .react-loading-skeleton {
+    margin-bottom: 5px;
+  }
+  .btn-create-invoice {
+    button {
+      width: 100%;
+    }
+  }
+}
+.send-invoice-modal{
+  .form-control:disabled, .form-control[readonly]{
+    background-color: transparent !important;
+  }
+  .needs-validation .md-form label {
+    left: 0px !important;
+  }
+  .md-form label.active {
+    transform: translateY(-15px) scale(0.8) !important;
+  }
+  .md-form .validate {
+    margin-bottom: 0.5rem;
+  }
+}

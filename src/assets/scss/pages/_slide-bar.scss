@@ -1,0 +1,41 @@
+.side-nav {
+  margin-top: 55px !important;
+
+  .list-unstyled {
+    li {
+      a {
+        overflow: hidden;
+      }
+    }
+
+    i {
+      padding-right: 10px;
+    }
+  }
+
+  .invoice-btn {
+    text-align: center;
+    margin-top: 20px;
+
+    button.btn-danger {
+      width: 180px;
+      border-radius: 10em !important;
+      background-color: #ff7043 !important;
+      margin: 0px;
+    }
+  }
+
+  button.btn-outline-success {
+    margin-top: 15px;
+    margin-left: 15px;
+  }
+}
+
+.nav-bar {
+  button {
+    padding-left: 1rem !important;
+  }
+
+}
+
+/*2c2f34*/
