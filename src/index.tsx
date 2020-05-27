@@ -15,6 +15,7 @@ import ItemScreenComponent from "screens/dashboard/item/component";
 import OrderScreenComponent from "screens/dashboard/order/component";
 import ProductScreenComponent from "screens/dashboard/product/component";
 import UserScreenComponent from "screens/dashboard/user/component";
+import HomeComponent from "screens/home";
 import LoginComponent from "screens/login";
 import StatsComponent from "screens/stats/component";
 import "./assets/scss/main.scss";
@@ -35,7 +36,10 @@ ReactDOM.render(
     <PersistGate loading={null} persistor={store.persistor}>
       <ConnectedRouter history={configureStore.history}>
         <Switch>
-          <Redirect from="/" exact to="/login" />
+          <Redirect from="/" exact to="/home" />
+          <Route path="/home">
+            <Route exact path="/home" component={HomeComponent} />
+          </Route>
           <Route path="/login">
             <Route exact path="/login" component={LoginComponent} />
           </Route>
