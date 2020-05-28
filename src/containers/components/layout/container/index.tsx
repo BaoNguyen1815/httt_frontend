@@ -1,7 +1,6 @@
 import LoadingComponent from "containers/components/loading";
 import { MDBCol, MDBContainer, MDBRow } from "mdbreact";
 import React, { Fragment, useEffect, useState } from "react";
-import FooterComponent from "../footer";
 import SideNavComponent from "../side-nav";
 import TopNavComponent from "../top-nav";
 import { IProps } from "./propState";
@@ -41,13 +40,13 @@ export default function ContainerComponent(props: IProps) {
       {isDisconnected && <p>Internet connection lost</p>}
       <LoadingComponent />
       <MDBRow>
-        <MDBCol size="2" md="2" style={{ width: "15rem !important" }}>
+        <MDBCol sm="2" md="2" lg="2" xl="2">
           <SideNavComponent />
         </MDBCol>
-        <MDBCol size="10" md="10">
+        <MDBCol sm="9" md="9" lg="9" xl="9">
           <TopNavComponent />
           <MDBContainer>{props.children}</MDBContainer>
-          <FooterComponent />
+          {/* <FooterComponent /> */}
         </MDBCol>
       </MDBRow>
     </Fragment>

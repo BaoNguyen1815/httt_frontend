@@ -2,17 +2,6 @@ import { MDBIcon, MDBSideNav, MDBSideNavCat, MDBSideNavLink, MDBSideNavNav } fro
 import React from "react";
 
 export default class SideNavComponent extends React.Component {
-  // state = {
-  //   sideNavLeft: false
-  // };
-
-  // sidenavToggle = sidenavId => () => {
-  //   const sidenavNr = `sideNav${sidenavId}`;
-  //   this.setState({
-  //     [sidenavNr]: !this.state[sidenavNr]
-  //   });
-  // };
-
   state = {
     isOpen: false
   };
@@ -28,8 +17,8 @@ export default class SideNavComponent extends React.Component {
       <MDBSideNav
         logo="https://mdbootstrap.com/img/logo/mdb-transparent.png"
         hidden={false}
-        breakWidth={1300}
-        className="deep-blue darken-4"
+        // breakWidth={1300}
+        className="deep-blue darken-3"
         fixed
         responsive={true}
       >

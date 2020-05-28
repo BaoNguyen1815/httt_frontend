@@ -15,35 +15,77 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { IProps, IState } from "./propState";
-import { getAllCategoryAction } from "./redux/actions";
+import { addNewCategoryAction, deleteCategoryAction, editCategoryAction, getAllCategoryAction } from "./redux/actions";
 
 class CategoryScreen extends React.Component<IProps> {
   state: IState = {
     modalAddStatus: false,
-    modalEditStatus: false
+    modalEditStatus: false,
+    name: "",
+    description: "",
+    list: this.props.listCategory.data,
+    id: null
   };
   componentDidMount() {
-    // this.props.getAllCategoryAction();
-    console.log("gix");
+    this.props.getAllCategoryAction();
   }
 
   toggleModalAdd = () => {
+    this.clear();
     this.setState({
       modalAddStatus: !this.state.modalAddStatus
     });
   };
 
-  toggleModalEdit = () => {
+  clear = () => {
     this.setState({
-      modalEditStatus: !this.state.modalEditStatus
+      name: "",
+      description: ""
     });
   };
 
-  saveAdd = () => {};
+  openModalEdit = (id: number, name: string, description: string) => () => {
+    this.setState({
+      modalEditStatus: true,
+      id,
+      name,
+      description
+    });
+  };
 
-  saveEdit = () => {};
+  closeModalEdit = () => {
+    this.clear();
+    this.setState({
+      modalEditStatus: false
+    });
+  };
 
-  delete = () => {};
+  saveAdd = () => {
+    this.props.addNewCategoryAction(this.state.name, this.state.description);
+    this.toggleModalAdd();
+  };
+
+  saveEdit = () => {
+    this.props.editCategoryAction(this.state.id, this.state.name, this.state.description);
+    this.closeModalEdit();
+  };
+
+  delete = (id: number) => () => {
+    this.props.deleteCategoryAction(id);
+    console.log(id);
+    this.props.listCategory.data.map((x, index) => {
+      console.log(index);
+      console.log(x);
+      if (x.id === x) {
+        this.props.listCategory.data.splice(index, 1);
+      }
+    });
+  };
+
+  handleChange = (field: string) => (event: any) => {
+    event.persist();
+    this.setState(state => ({ ...state, [field]: event.target.value }));
+  };
 
   render() {
     const modalAddCategory = this.state.modalAddStatus ? (
@@ -52,9 +94,8 @@ class CategoryScreen extends React.Component<IProps> {
           <strong>Add a new category</strong>
         </MDBModalHeader>
         <MDBModalBody>
-          <MDBInput label="Sell Price" />
-          <MDBInput label="Sale" />
-          <MDBInput label="Description" />
+          <MDBInput label="Name" value={this.state.name} onChange={this.handleChange("name")} />
+          <MDBInput label="Description" value={this.state.description} onChange={this.handleChange("description")} />
         </MDBModalBody>
         <MDBModalFooter>
           <MDBBtn color="secondary" onClick={this.toggleModalAdd}>
@@ -68,17 +109,16 @@ class CategoryScreen extends React.Component<IProps> {
     ) : null;
 
     const modalEditCategory = this.state.modalEditStatus ? (
-      <MDBModal isOpen={this.state.modalEditStatus} toggle={this.toggleModalEdit}>
-        <MDBModalHeader toggle={this.toggleModalEdit}>
+      <MDBModal isOpen={this.state.modalEditStatus} toggle={this.closeModalEdit}>
+        <MDBModalHeader toggle={this.closeModalEdit}>
           <strong>Edit the category</strong>
         </MDBModalHeader>
         <MDBModalBody>
-          <MDBInput label="Sell Price" />
-          <MDBInput label="Sale" />
-          <MDBInput label="Description" />
+          <MDBInput label="Name" value={this.state.name} onChange={this.handleChange("name")} />
+          <MDBInput label="Description" value={this.state.description} onChange={this.handleChange("description")} />
         </MDBModalBody>
         <MDBModalFooter>
-          <MDBBtn color="secondary" onClick={this.toggleModalEdit}>
+          <MDBBtn color="secondary" onClick={this.closeModalEdit}>
             Close
           </MDBBtn>
           <MDBBtn color="primary" onClick={this.saveEdit}>
@@ -98,7 +138,7 @@ class CategoryScreen extends React.Component<IProps> {
             <MDBTableHead color="primary-color" textWhite>
               <tr>
                 <th>#</th>
-                <th>Type</th>
+                <th>Name</th>
                 <th>Description</th>
                 <th>Options</th>
               </tr>
@@ -107,12 +147,12 @@ class CategoryScreen extends React.Component<IProps> {
               {this.props.listCategory.data.map((item, index) => {
                 return (
                   <tr key={index}>
-                    <td>{item.id}</td>
-                    <td>{item.type}</td>
+                    <td>{index + 1}</td>
+                    <td>{item.name}</td>
                     <td>{item.description}</td>
                     <td>
-                      <MDBBtn onClick={this.toggleModalEdit}>Edit</MDBBtn>
-                      <MDBBtn onClick={this.delete}>Delete</MDBBtn>
+                      <MDBBtn onClick={this.openModalEdit(item.id, item.name, item.description)}>Edit</MDBBtn>
+                      <MDBBtn onClick={this.delete(item.id)}>Delete</MDBBtn>
                     </td>
                   </tr>
                 );
@@ -130,6 +170,10 @@ const mapStateToProps = state => {
     listCategory: state.screen.category
   };
 };
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ getAllCategoryAction }, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    { getAllCategoryAction, addNewCategoryAction, deleteCategoryAction, editCategoryAction },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(CategoryScreen);

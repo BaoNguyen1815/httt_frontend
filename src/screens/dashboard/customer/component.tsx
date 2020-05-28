@@ -49,7 +49,7 @@ class CustomerScreen extends React.Component<IProps> {
     const modalAddUser = this.state.modalAddStatus ? (
       <MDBModal isOpen={this.state.modalAddStatus} toggle={this.toggleModalAdd}>
         <MDBModalHeader toggle={this.toggleModalAdd}>
-          <strong>Add a new user</strong>
+          <strong>Add a new customer</strong>
         </MDBModalHeader>
         <MDBModalBody>
           <MDBInput label="Sell Price" />
@@ -92,7 +92,7 @@ class CustomerScreen extends React.Component<IProps> {
         {modalAddUser}
         {modalEditUser}
         <MDBContainer>
-          <MDBBtn onClick={this.toggleModalAdd}>Add a new cateogry</MDBBtn>
+          <MDBBtn onClick={this.toggleModalAdd}>Add a new customer</MDBBtn>
           <MDBTable>
             <MDBTableHead color="primary-color" textWhite>
               <tr>

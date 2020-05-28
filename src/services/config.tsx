@@ -15,7 +15,7 @@ export const postService = async (
       : { Accept: "application/json", "Content-Type": "application/json" };
     if (isAuthorization) headers["Authorization"] = sessionStorage.getItem(SYSTEM.TOKEN);
     const response = await axios.post(`${config.HOST_API}/${url}`, JSON.stringify(body), { headers });
-    if (response.status === RESPONSE_STATUS.SUCESS) return response.data;
+    if (response.status === RESPONSE_STATUS.SUCESS || 201) return response.data;
     if (messErr) throw Error(messErr);
   } catch (error) {
     throw error;

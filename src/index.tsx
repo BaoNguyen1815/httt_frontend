@@ -12,6 +12,7 @@ import CategoryScreenComponent from "screens/dashboard/category/component";
 import DashBoardComponent from "screens/dashboard/component";
 import CustomerScreenComponent from "screens/dashboard/customer/component";
 import ItemScreenComponent from "screens/dashboard/item/component";
+import AddOrderScreenComponent from "screens/dashboard/order/addOrder/component";
 import OrderScreenComponent from "screens/dashboard/order/component";
 import ProductScreenComponent from "screens/dashboard/product/component";
 import UserScreenComponent from "screens/dashboard/user/component";
@@ -50,6 +51,7 @@ ReactDOM.render(
             <PrivateRoute exact path="/dashboard/category" component={CategoryScreenComponent} />
             <PrivateRoute exact path="/dashboard/item" component={ItemScreenComponent} />
             <PrivateRoute exact path="/dashboard/order" component={OrderScreenComponent} />
+            <PrivateRoute exact path="/dashboard/order/addOrder" component={AddOrderScreenComponent} />
             <PrivateRoute exact path="/dashboard/customer" component={CustomerScreenComponent} />
           </PrivateRoute>
           <Route path="/stats">

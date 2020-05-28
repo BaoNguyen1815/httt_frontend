@@ -92,7 +92,7 @@ class UserScreen extends React.Component<IProps> {
         {modalAddUser}
         {modalEditUser}
         <MDBContainer>
-          <MDBBtn onClick={this.toggleModalAdd}>Add a new cateogry</MDBBtn>
+          <MDBBtn onClick={this.toggleModalAdd}>Add a new user</MDBBtn>
           <MDBTable>
             <MDBTableHead color="primary-color" textWhite>
               <tr>

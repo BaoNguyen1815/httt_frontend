@@ -3,7 +3,6 @@ import { MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle, MDBCol, 
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import "./home.css";
 import { IProps, IState } from "./propState";
 import { logInAction } from "./redux/actions";
 
@@ -21,7 +20,7 @@ class HomeComponent extends React.Component<IState, IProps> {
   render() {
     return (
       <MDBRow>
-        <MDBCol sm="12" md="12" lg="10" xl="8" className="mx-auto my-auto">
+        <MDBCol sm="12" md="12" lg="12" xl="12" className="mx-auto my-auto">
           <TopNavComponent />
           <section className="text-center my-5">
             <h2 className="h1-responsive font-weight-bold text-center my-5">Our bestsellers</h2>

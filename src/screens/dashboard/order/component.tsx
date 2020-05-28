@@ -8,7 +8,7 @@ import { getAllOrderAction } from "./redux/actions";
 
 class OrderScreen extends React.Component<IProps> {
   componentDidMount() {
-    this.props.getAllOrderAction();
+    // this.props.getAllOrderAction();
   }
 
   render() {
