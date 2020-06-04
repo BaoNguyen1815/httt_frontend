@@ -5,6 +5,7 @@ import orderSaga from "./dashboard/order/redux/opetarions";
 import productSaga from "./dashboard/product/redux/opetarions";
 import userSaga from "./dashboard/user/redux/opetarions";
 import loginSaga from "./login/redux/opetarions";
+import signupSaga from "./signup/redux/opetarions";
 
 export default {
   ...loginSaga,
@@ -13,5 +14,6 @@ export default {
   ...categorySaga,
   ...itemSaga,
   ...orderSaga,
-  ...customerSaga
+  ...customerSaga,
+  ...signupSaga
 };

@@ -1,17 +1,16 @@
 import ContainerComponent from "containers/components/layout/container";
 import {
   MDBBtn,
+  MDBCol,
   MDBContainer,
   MDBInput,
   MDBModal,
   MDBModalBody,
   MDBModalFooter,
-  MDBModalHeader,
-  MDBTable,
-  MDBTableBody,
-  MDBTableHead
+  MDBModalHeader
 } from "mdbreact";
 import React from "react";
+import DataTable from "react-data-table-component";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { IProps, IState } from "./propState";
@@ -24,7 +23,8 @@ class CategoryScreen extends React.Component<IProps> {
     name: "",
     description: "",
     list: this.props.listCategory.data,
-    id: null
+    id: null,
+    searchKey: ""
   };
   componentDidMount() {
     this.props.getAllCategoryAction();
@@ -72,10 +72,7 @@ class CategoryScreen extends React.Component<IProps> {
 
   delete = (id: number) => () => {
     this.props.deleteCategoryAction(id);
-    console.log(id);
     this.props.listCategory.data.map((x, index) => {
-      console.log(index);
-      console.log(x);
       if (x.id === x) {
         this.props.listCategory.data.splice(index, 1);
       }
@@ -128,37 +125,53 @@ class CategoryScreen extends React.Component<IProps> {
       </MDBModal>
     ) : null;
 
+    const columns = [
+      {
+        name: "#",
+        selector: "index",
+        sortable: true,
+        width: "50px"
+      },
+      {
+        name: "Name",
+        selector: "name",
+        sortable: true,
+        width: "300px"
+      },
+      {
+        name: "Description",
+        selector: "description",
+        sortable: true,
+        width: "200px"
+      },
+      {
+        name: "Options",
+        cell: row => (
+          <div>
+            <MDBBtn onClick={this.openModalEdit(row.id, row.name, row.description)}>Edit</MDBBtn>
+            <MDBBtn onClick={this.delete(row.id)}>Delete</MDBBtn>
+          </div>
+        ),
+        right: true,
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
+        width: "200px"
+      }
+    ];
+    const data = this.props.listCategory.data.filter(x => {
+      return x.name.toLowerCase().includes(this.state.searchKey.toLowerCase());
+    });
     return (
       <ContainerComponent>
         {modalAddCategory}
         {modalEditCategory}
         <MDBContainer>
           <MDBBtn onClick={this.toggleModalAdd}>Add a new cateogry</MDBBtn>
-          <MDBTable>
-            <MDBTableHead color="primary-color" textWhite>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Options</th>
-              </tr>
-            </MDBTableHead>
-            <MDBTableBody>
-              {this.props.listCategory.data.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{index + 1}</td>
-                    <td>{item.name}</td>
-                    <td>{item.description}</td>
-                    <td>
-                      <MDBBtn onClick={this.openModalEdit(item.id, item.name, item.description)}>Edit</MDBBtn>
-                      <MDBBtn onClick={this.delete(item.id)}>Delete</MDBBtn>
-                    </td>
-                  </tr>
-                );
-              })}
-            </MDBTableBody>
-          </MDBTable>
+          <MDBCol md="6">
+            <MDBInput hint="Search" type="text" containerClass="mt-0" onChange={this.handleChange("searchKey")} />
+          </MDBCol>
+          <DataTable columns={columns} theme="solarized" data={data} pagination={true} />
         </MDBContainer>
       </ContainerComponent>
     );

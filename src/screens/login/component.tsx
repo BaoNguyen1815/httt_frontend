@@ -17,16 +17,14 @@ import { validateLogin } from "../../services/user/validateLogin";
 import { IProps, IState } from "./propState";
 import { logInAction } from "./redux/actions";
 
-class LoginComponent extends React.Component<IState, IProps> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-      password: "",
-      repeat_password: "",
-      flipped: false
-    };
-  }
+class LoginComponent extends React.Component<IProps> {
+  state: IState = {
+    username: "",
+    password: "",
+    repeat_password: "",
+    flipped: false
+  };
+
   handleChange = (field: string) => (event: any) => {
     event.persist();
     this.setState(state => ({ ...state, [field]: event.target.value }));
@@ -63,7 +61,6 @@ class LoginComponent extends React.Component<IState, IProps> {
                         placeholder="Username"
                         icon="envelope"
                         group
-                        type="email"
                         validate
                         error="wrong"
                         success="right"
@@ -71,7 +68,7 @@ class LoginComponent extends React.Component<IState, IProps> {
                         required
                         onChange={this.handleChange("username")}
                       >
-                        <div className="invalid-feedback">Please provide a valid email....</div>
+                        <div className="invalid-feedback">Please provide a valid username....</div>
                       </MDBInput>
 
                       <MDBInput
@@ -91,6 +88,9 @@ class LoginComponent extends React.Component<IState, IProps> {
                     <div className="d-flex justify-content-between">
                       <Link className="grey-text" to="/f">
                         Forgot password?
+                      </Link>
+                      <Link className="grey-text" to="/signup">
+                        You don't have an account? Sign up now!
                       </Link>
                     </div>
                     <div className="text-center mt-4">

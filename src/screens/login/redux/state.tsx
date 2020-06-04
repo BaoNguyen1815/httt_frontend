@@ -1,4 +1,3 @@
 export default interface IActionState {
-  data: any;
-  dataCart: any;
+  accountInfo: any;
 }

@@ -5,6 +5,7 @@ import itemReducer from "screens/dashboard/item/redux/reducers";
 import orderReducer from "screens/dashboard/order/redux/reducers";
 import productReducer from "screens/dashboard/product/redux/reducers";
 import usersReducer from "screens/dashboard/user/redux/reducers";
+import accountInfoReducer from "screens/login/redux/reducers";
 
 export default combineReducers({
   user: usersReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   category: categoryReducer,
   item: itemReducer,
   order: orderReducer,
-  customer: customersReducer
+  customer: customersReducer,
+  accountInfo: accountInfoReducer
 });

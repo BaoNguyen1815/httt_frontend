@@ -9,7 +9,7 @@ interface IStateToProps {
 }
 
 interface IState {
-  getAllOrderAction?: () => void;
+  searchKey: string;
 }
 
 export { IProps, IState };

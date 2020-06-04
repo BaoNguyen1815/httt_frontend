@@ -18,6 +18,7 @@ interface IState {
   description: string;
   list: any;
   id: number;
+  searchKey: string;
 }
 
 export { IProps, IState };

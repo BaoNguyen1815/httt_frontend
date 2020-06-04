@@ -1,21 +1,11 @@
 import ContainerComponent from "containers/components/layout/container";
-import {
-  MDBBtn,
-  MDBContainer,
-  MDBInput,
-  MDBModal,
-  MDBModalBody,
-  MDBModalFooter,
-  MDBModalHeader,
-  MDBTable,
-  MDBTableBody,
-  MDBTableHead
-} from "mdbreact";
+import { MDBBtn, MDBContainer } from "mdbreact";
 import React from "react";
+import DataTable from "react-data-table-component";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { IProps, IState } from "./propState";
-import { getAllUsersAction } from "./redux/actions";
+import { deleteUserAction, getAllUsersAction } from "./redux/actions";
 
 class UserScreen extends React.Component<IProps> {
   state: IState = {
@@ -24,7 +14,7 @@ class UserScreen extends React.Component<IProps> {
   };
 
   componentDidMount() {
-    // this.props.getAllUsersAction();
+    this.props.getAllUsersAction();
   }
 
   toggleModalAdd = () => {
@@ -43,87 +33,59 @@ class UserScreen extends React.Component<IProps> {
 
   saveEdit = () => {};
 
-  delete = () => {};
+  delete = id => () => {
+    this.props.deleteUserAction(id);
+    this.props.listUser.data.map((x, index) => {
+      if (x.id === x) {
+        this.props.listUser.data.splice(index, 1);
+      }
+    });
+  };
 
   render() {
-    const modalAddUser = this.state.modalAddStatus ? (
-      <MDBModal isOpen={this.state.modalAddStatus} toggle={this.toggleModalAdd}>
-        <MDBModalHeader toggle={this.toggleModalAdd}>
-          <strong>Add a new user</strong>
-        </MDBModalHeader>
-        <MDBModalBody>
-          <MDBInput label="Sell Price" />
-          <MDBInput label="Sale" />
-          <MDBInput label="Description" />
-        </MDBModalBody>
-        <MDBModalFooter>
-          <MDBBtn color="secondary" onClick={this.toggleModalAdd}>
-            Close
-          </MDBBtn>
-          <MDBBtn color="primary" onClick={this.saveAdd}>
-            Save
-          </MDBBtn>
-        </MDBModalFooter>
-      </MDBModal>
-    ) : null;
-
-    const modalEditUser = this.state.modalEditStatus ? (
-      <MDBModal isOpen={this.state.modalEditStatus} toggle={this.toggleModalEdit}>
-        <MDBModalHeader toggle={this.toggleModalEdit}>
-          <strong>Edit the user</strong>
-        </MDBModalHeader>
-        <MDBModalBody>
-          <MDBInput label="Sell Price" />
-          <MDBInput label="Sale" />
-          <MDBInput label="Description" />
-        </MDBModalBody>
-        <MDBModalFooter>
-          <MDBBtn color="secondary" onClick={this.toggleModalEdit}>
-            Close
-          </MDBBtn>
-          <MDBBtn color="primary" onClick={this.saveEdit}>
-            Save
-          </MDBBtn>
-        </MDBModalFooter>
-      </MDBModal>
-    ) : null;
+    const columns = [
+      {
+        name: "#",
+        selector: "id",
+        sortable: true,
+        width: "70px"
+      },
+      {
+        name: "Username",
+        selector: "username",
+        sortable: true,
+        width: "300px"
+      },
+      {
+        name: "Full Name",
+        selector: "fullName",
+        sortable: true,
+        width: "200px"
+      },
+      {
+        name: "Role",
+        selector: "role",
+        sortable: true,
+        width: "100px"
+      },
+      {
+        name: "Options",
+        cell: row => (
+          <div>
+            <MDBBtn onClick={this.delete(row.id)}>Delete</MDBBtn>
+          </div>
+        ),
+        right: true,
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
+        width: "200px"
+      }
+    ];
     return (
       <ContainerComponent>
-        {modalAddUser}
-        {modalEditUser}
         <MDBContainer>
-          <MDBBtn onClick={this.toggleModalAdd}>Add a new user</MDBBtn>
-          <MDBTable>
-            <MDBTableHead color="primary-color" textWhite>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Age</th>
-                <th>Sex</th>
-                <th>Options</th>
-              </tr>
-            </MDBTableHead>
-            <MDBTableBody>
-              {this.props.listUser.data.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>
-                    <td>{item.phone}</td>
-                    <td>{item.address}</td>
-                    <td>{item.age}</td>
-                    <td>{item.sex}</td>
-                    <td>
-                      <MDBBtn onClick={this.toggleModalEdit}>Edit</MDBBtn>
-                      <MDBBtn onClick={this.delete}>Delete</MDBBtn>
-                    </td>
-                  </tr>
-                );
-              })}
-            </MDBTableBody>
-          </MDBTable>
+          <DataTable columns={columns} theme="solarized" data={this.props.listUser.data} pagination={true} />
         </MDBContainer>
       </ContainerComponent>
     );
@@ -135,6 +97,7 @@ const mapStateToProps = state => {
     listUser: state.screen.user
   };
 };
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ getAllUsersAction }, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators({ getAllUsersAction, deleteUserAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserScreen);

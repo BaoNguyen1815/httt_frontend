@@ -2,6 +2,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import "bootstrap-css-only/css/bootstrap.min.css";
 import { ConnectedRouter } from "connected-react-router";
 import Page404Component from "containers/components/404";
+import { SYSTEM } from "containers/contants";
 import "mdbreact/dist/css/mdb.css";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -18,6 +19,7 @@ import ProductScreenComponent from "screens/dashboard/product/component";
 import UserScreenComponent from "screens/dashboard/user/component";
 import HomeComponent from "screens/home";
 import LoginComponent from "screens/login";
+import SignupComponent from "screens/signup";
 import StatsComponent from "screens/stats/component";
 import "./assets/scss/main.scss";
 import configureStore from "./boot/configureStore";
@@ -25,9 +27,7 @@ import configureStore from "./boot/configureStore";
 const store = configureStore.setup();
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  // const token = localStorage.getItem("token");
-  // hard code for now
-  const token = "test";
+  const token = localStorage.getItem(SYSTEM.TOKEN);
   const auth = props => (!token ? <Redirect to="/login" /> : <Component {...props} />);
   return <Route {...rest} render={auth} />;
 };
@@ -43,6 +43,9 @@ ReactDOM.render(
           </Route>
           <Route path="/login">
             <Route exact path="/login" component={LoginComponent} />
+          </Route>
+          <Route path="/signup">
+            <Route exact path="/signup" component={SignupComponent} />
           </Route>
           <PrivateRoute path="/dashboard" component={DashBoardComponent}>
             <PrivateRoute exact path="/dashboard" component={DashBoardComponent} />

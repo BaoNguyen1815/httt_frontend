@@ -53,19 +53,23 @@ export default class SideNavComponent extends React.Component {
           </MDBSideNavLink>
           <MDBSideNavCat name="Quản lý bán hàng" id="store" icon="store-alt">
             <MDBSideNavLink icon="store-alt" to="/dashboard/item">
-              Quản lý sản phẩm
+              Quản lý sản phẩm bán
             </MDBSideNavLink>
-            <MDBSideNavLink to="/dashboard/category">Quản lý loại sản phẩm</MDBSideNavLink>
             <MDBSideNavLink to="/dashboard/order">Quản lý loại đơn hàng</MDBSideNavLink>
+            <MDBSideNavLink to="/dashboard/payment">Quản lý phương thức thanh toán</MDBSideNavLink>
             <MDBSideNavLink to="/dashboard/shipping">Quản lý loại đơn vị vận chuyển</MDBSideNavLink>
           </MDBSideNavCat>
           <MDBSideNavCat name="Quản lý kho" id="warehouse" icon="warehouse" href="#">
             <MDBSideNavLink to="/dashboard/product">Quản lý sản phẩm nhập</MDBSideNavLink>
-            <MDBSideNavLink>Quản lý sản phẩm xuất</MDBSideNavLink>
+            <MDBSideNavLink to="/dashboard/item">Quản lý sản phẩm xuất</MDBSideNavLink>
+            <MDBSideNavLink to="/dashboard/category">Quản lý thể loại sản phẩm</MDBSideNavLink>
+          </MDBSideNavCat>
+          <MDBSideNavCat name="Quản lý người dùng" id="user" icon="user" href="#">
+            <MDBSideNavLink to="/dashboard/user">Quản lý người dùng</MDBSideNavLink>
+            <MDBSideNavLink to="/dashboard/customer">Quản lý khách hàng</MDBSideNavLink>
           </MDBSideNavCat>
           <MDBSideNavCat name="Thống kê" id="stats" icon="chart-bar" href="#">
             <MDBSideNavLink to="/stats">Thống kê</MDBSideNavLink>
-            <MDBSideNavLink>Quản lý sản phẩm xuất</MDBSideNavLink>
           </MDBSideNavCat>
           <MDBSideNavCat name="About" id="about" icon="eye">
             <MDBSideNavLink>Instruction</MDBSideNavLink>

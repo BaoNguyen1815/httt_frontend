@@ -1,7 +1,7 @@
 interface IProps extends IDispatchToProps, IStateToProps {}
 
 interface IDispatchToProps {
-  logInAction?: (username: string, password: string) => void;
+  signUpAction?: (username: string, password: string, fullName: string, role: string) => void;
 }
 
 interface IStateToProps {}
@@ -10,7 +10,9 @@ interface IState {
   username: string;
   password: string;
   repeat_password: string;
-  flipped: boolean;
+  fullName: string;
+  role: string;
+  option: any;
 }
 
 export { IProps, IState };

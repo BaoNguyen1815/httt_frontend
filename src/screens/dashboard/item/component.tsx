@@ -1,30 +1,35 @@
 import ContainerComponent from "containers/components/layout/container";
 import {
   MDBBtn,
+  MDBCol,
   MDBContainer,
   MDBInput,
   MDBModal,
   MDBModalBody,
   MDBModalFooter,
-  MDBModalHeader,
-  MDBTable,
-  MDBTableBody,
-  MDBTableHead
+  MDBModalHeader
 } from "mdbreact";
 import React from "react";
+import DataTable from "react-data-table-component";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { IProps, IState } from "./propState";
-import { getAllItemsAction } from "./redux/actions";
+import { addNewItemAction, deleteItemAction, editItemAction, getAllItemsAction } from "./redux/actions";
 
 class ItemsScreen extends React.Component<IProps> {
   state: IState = {
     modalAddStatus: false,
-    modalEditStatus: false
+    modalEditStatus: false,
+    id: null,
+    sale: null,
+    sellingPrice: null,
+    productId: null,
+    searchKey: ""
   };
 
   componentDidMount() {
-    // this.props.getAllItemsAction();
+    this.props.getAllItemsAction();
+    this.props.getAllProductsAction;
   }
 
   toggleModalAdd = () => {
@@ -43,7 +48,14 @@ class ItemsScreen extends React.Component<IProps> {
 
   saveEdit = () => {};
 
-  delete = () => {};
+  delete = (id: number) => () => {
+    console.log(id);
+  };
+
+  handleChange = (field: string) => (event: any) => {
+    event.persist();
+    this.setState(state => ({ ...state, [field]: event.target.value }));
+  };
 
   render() {
     // const modalAddItem = this.state.modalEditStatus ? (
@@ -88,39 +100,79 @@ class ItemsScreen extends React.Component<IProps> {
       </MDBModal>
     ) : null;
 
+    const columns = [
+      {
+        name: "#",
+        selector: "id",
+        sortable: true,
+        width: "50px"
+      },
+      {
+        name: "Product Name",
+        selector: "product.name",
+        sortable: true,
+        width: "200px"
+      },
+      {
+        name: "Product Code",
+        selector: "product.code",
+        sortable: true,
+        width: "100px"
+      },
+      {
+        name: "Quantity",
+        selector: "quantity",
+        sortable: true,
+        width: "100px"
+      },
+      {
+        name: "Selling Price",
+        selector: "sellingPrice",
+        sortable: true,
+        width: "100px"
+      },
+      {
+        name: "Sale",
+        selector: "sale",
+        sortable: true,
+        width: "100px"
+      },
+      {
+        name: "Description",
+        selector: "description",
+        sortable: true,
+        width: "100px"
+      },
+      {
+        name: "Options",
+        cell: row => (
+          <div>
+            <MDBBtn onClick={this.toggleModalEdit}>Edit</MDBBtn>
+            <MDBBtn onClick={this.delete(row.id)}>Delete</MDBBtn>
+          </div>
+        ),
+        right: true,
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
+        width: "200px"
+      }
+    ];
+    const data = this.props.listItems.data.filter(x => {
+      if (x) {
+        return x.product.name.toLowerCase().includes(this.state.searchKey.toLowerCase());
+      } else {
+        return;
+      }
+    });
     return (
       <ContainerComponent>
-        {/* {modalAddItem} */}
         {modalEditItem}
         <MDBContainer>
-          {/* <MDBBtn>Add a new item</MDBBtn> */}
-          <MDBTable>
-            <MDBTableHead color="primary-color" textWhite>
-              <tr>
-                <th>#</th>
-                <th>ProductId</th>
-                <th>Sale</th>
-                <th>Selling Price</th>
-                <th>Options</th>
-              </tr>
-            </MDBTableHead>
-            <MDBTableBody>
-              {this.props.listItems.data.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{item.id}</td>
-                    <td>{item.productId}</td>
-                    <td>{item.sale}</td>
-                    <td>{item.sellingPrice}</td>
-                    <td>
-                      <MDBBtn onClick={this.toggleModalEdit}>Edit</MDBBtn>
-                      <MDBBtn onClick={this.delete}>Delete</MDBBtn>
-                    </td>
-                  </tr>
-                );
-              })}
-            </MDBTableBody>
-          </MDBTable>
+          <MDBCol md="6">
+            <MDBInput hint="Search" type="text" containerClass="mt-0" onChange={this.handleChange("searchKey")} />
+          </MDBCol>
+          <DataTable columns={columns} theme="solarized" data={data} pagination={true} />
         </MDBContainer>
       </ContainerComponent>
     );
@@ -132,6 +184,7 @@ const mapStateToProps = state => {
     listItems: state.screen.item
   };
 };
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ getAllItemsAction }, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators({ getAllItemsAction, addNewItemAction, editItemAction, deleteItemAction }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemsScreen);

@@ -2,6 +2,7 @@ interface IProps extends IDispatchToProps, IStateToProps {}
 
 interface IDispatchToProps {
   getAllUsersAction?: () => void;
+  deleteUserAction?: (id: number) => void;
 }
 
 interface IStateToProps {

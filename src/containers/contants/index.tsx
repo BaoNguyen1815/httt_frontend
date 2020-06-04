@@ -1,5 +1,5 @@
 const SYSTEM = {
-  TOKEN: "@@token"
+  TOKEN: "@@tokenHTTT"
 };
 
 const RESPONSE_STATUS = {

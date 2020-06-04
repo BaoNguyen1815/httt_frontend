@@ -23,6 +23,12 @@ export default class TopNavComponent extends React.Component {
   toggleCollapse = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
+
+  logout = () => {
+    localStorage.clear();
+    location.reload();
+  };
+
   public render() {
     return (
       <Router>
@@ -48,10 +54,8 @@ export default class TopNavComponent extends React.Component {
                     <div className="d-none d-md-inline">Dropdown</div>
                   </MDBDropdownToggle>
                   <MDBDropdownMenu className="dropdown-default">
-                    <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+                    <MDBDropdownItem href="#!">Settings</MDBDropdownItem>
+                    <MDBDropdownItem onClick={this.logout}>Logout</MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>
               </MDBNavItem>
@@ -73,10 +77,8 @@ export default class TopNavComponent extends React.Component {
                     <MDBIcon icon="user" />
                   </MDBDropdownToggle>
                   <MDBDropdownMenu className="dropdown-default">
-                    <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                    <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
+                    <MDBDropdownItem href="#!">Settings</MDBDropdownItem>
+                    <MDBDropdownItem onClick={this.logout}>Logout</MDBDropdownItem>
                   </MDBDropdownMenu>
                 </MDBDropdown>
               </MDBNavItem>

@@ -1,49 +1,142 @@
 import ContainerComponent from "containers/components/layout/container";
 import {
   MDBBtn,
+  MDBCol,
   MDBContainer,
   MDBInput,
   MDBModal,
   MDBModalBody,
   MDBModalFooter,
   MDBModalHeader,
-  MDBTable,
-  MDBTableBody,
-  MDBTableHead
+  MDBSelect
 } from "mdbreact";
 import React from "react";
+import DataTable from "react-data-table-component";
 import { connect } from "react-redux";
 import { bindActionCreators, Dispatch } from "redux";
 import { IProps, IState } from "./propState";
-import { getAllCustomersAction } from "./redux/actions";
+import { addNewCustomerAction, deleteCustomerAction, editCustomerAction, getAllCustomersAction } from "./redux/actions";
 
 class CustomerScreen extends React.Component<IProps> {
   state: IState = {
     modalAddStatus: false,
-    modalEditStatus: false
+    modalEditStatus: false,
+    name: null,
+    phone: null,
+    age: null,
+    sex: "Male",
+    username: null,
+    password: null,
+    id: null,
+    options: [
+      {
+        checked: true,
+        text: "Male",
+        value: "Male"
+      },
+      {
+        text: "Female",
+        value: "Female"
+      },
+      {
+        text: "Other",
+        value: "Other"
+      }
+    ],
+    searchKey: ""
   };
 
   componentDidMount() {
-    // this.props.getAllCustomersAction();
+    this.props.getAllCustomersAction();
   }
 
   toggleModalAdd = () => {
+    this.clear();
     this.setState({
       modalAddStatus: !this.state.modalAddStatus
     });
   };
 
-  toggleModalEdit = () => {
+  openModalEdit = (
+    id: number,
+    name: string,
+    phone: string,
+    age: number,
+    sex: string,
+    username: string,
+    password: string
+  ) => () => {
     this.setState({
-      modalEditStatus: !this.state.modalEditStatus
+      modalEditStatus: true,
+      id,
+      name,
+      phone,
+      age,
+      sex,
+      username,
+      password
     });
   };
 
-  saveAdd = () => {};
+  closeModalEdit = () => {
+    this.clear();
+    this.setState({
+      modalEditStatus: false
+    });
+  };
 
-  saveEdit = () => {};
+  clear = () => {
+    this.setState({
+      name: null,
+      phone: null,
+      age: null,
+      sex: "Male",
+      username: null,
+      password: null
+    });
+  };
 
-  delete = () => {};
+  saveAdd = () => {
+    this.props.addNewCustomerAction(
+      this.state.name,
+      this.state.phone,
+      this.state.age,
+      this.state.sex,
+      this.state.username,
+      this.state.password
+    );
+    this.toggleModalAdd();
+  };
+
+  saveEdit = () => {
+    this.props.editCustomerAction(
+      this.state.id,
+      this.state.name,
+      this.state.phone,
+      this.state.age,
+      this.state.sex,
+      this.state.username,
+      this.state.password
+    );
+    this.closeModalEdit();
+  };
+
+  delete = (id: number) => () => {
+    this.props.deleteCustomerAction(id);
+    this.props.listCustomer.data.map((x, index) => {
+      if (x.id === x) {
+        this.props.listCustomer.data.splice(index, 1);
+      }
+    });
+  };
+
+  handleChange = (field: string) => (event: any) => {
+    event.persist();
+    this.setState(state => ({ ...state, [field]: event.target.value }));
+  };
+  handleSelectChange = event => {
+    this.setState({ ...this.state, sex: event[0] });
+  };
 
   render() {
     const modalAddUser = this.state.modalAddStatus ? (
@@ -52,9 +145,19 @@ class CustomerScreen extends React.Component<IProps> {
           <strong>Add a new customer</strong>
         </MDBModalHeader>
         <MDBModalBody>
-          <MDBInput label="Sell Price" />
-          <MDBInput label="Sale" />
-          <MDBInput label="Description" />
+          <MDBInput label="Name" value={this.state.name ? this.state.name : ""} onChange={this.handleChange("name")} />
+          <MDBInput
+            label="Phone"
+            value={this.state.phone ? this.state.phone : ""}
+            onChange={this.handleChange("phone")}
+          />
+          <MDBInput label="Age" value={this.state.age ? this.state.age : ""} onChange={this.handleChange("age")} />
+          <MDBSelect
+            options={this.state.options}
+            selected="Choose Sex"
+            label="Sex"
+            getValue={this.handleSelectChange}
+          />
         </MDBModalBody>
         <MDBModalFooter>
           <MDBBtn color="secondary" onClick={this.toggleModalAdd}>
@@ -68,17 +171,27 @@ class CustomerScreen extends React.Component<IProps> {
     ) : null;
 
     const modalEditUser = this.state.modalEditStatus ? (
-      <MDBModal isOpen={this.state.modalEditStatus} toggle={this.toggleModalEdit}>
-        <MDBModalHeader toggle={this.toggleModalEdit}>
+      <MDBModal isOpen={this.state.modalEditStatus} toggle={this.closeModalEdit}>
+        <MDBModalHeader toggle={this.closeModalEdit}>
           <strong>Edit the user</strong>
         </MDBModalHeader>
         <MDBModalBody>
-          <MDBInput label="Sell Price" />
-          <MDBInput label="Sale" />
-          <MDBInput label="Description" />
+          <MDBInput label="Name" value={this.state.name ? this.state.name : ""} onChange={this.handleChange("name")} />
+          <MDBInput
+            label="Phone"
+            value={this.state.phone ? this.state.phone : ""}
+            onChange={this.handleChange("phone")}
+          />
+          <MDBInput label="Age" value={this.state.age ? this.state.age : ""} onChange={this.handleChange("age")} />
+          <MDBSelect
+            options={this.state.options}
+            selected="Choose Sex"
+            label="Sex"
+            getValue={this.handleSelectChange}
+          />
         </MDBModalBody>
         <MDBModalFooter>
-          <MDBBtn color="secondary" onClick={this.toggleModalEdit}>
+          <MDBBtn color="secondary" onClick={this.closeModalEdit}>
             Close
           </MDBBtn>
           <MDBBtn color="primary" onClick={this.saveEdit}>
@@ -87,43 +200,70 @@ class CustomerScreen extends React.Component<IProps> {
         </MDBModalFooter>
       </MDBModal>
     ) : null;
+
+    const columns = [
+      {
+        name: "#",
+        selector: "id",
+        sortable: true,
+        width: "70px"
+      },
+      {
+        name: "Name",
+        selector: "name",
+        sortable: true,
+        width: "300px"
+      },
+      {
+        name: "Phone",
+        selector: "phone",
+        sortable: true,
+        width: "200px"
+      },
+      {
+        name: "Age",
+        selector: "age",
+        sortable: true,
+        width: "100px"
+      },
+      {
+        name: "Sex",
+        selector: "sex",
+        sortable: true,
+        width: "100px"
+      },
+      {
+        name: "Options",
+        cell: row => (
+          <div>
+            <MDBBtn
+              onClick={this.openModalEdit(row.id, row.name, row.phone, row.age, row.sex, row.username, row.password)}
+            >
+              Edit
+            </MDBBtn>
+            <MDBBtn onClick={this.delete(row.id)}>Delete</MDBBtn>
+          </div>
+        ),
+        right: true,
+        ignoreRowClick: true,
+        allowOverflow: true,
+        button: true,
+        width: "200px"
+      }
+    ];
+    const data = this.props.listCustomer.data.filter(x => {
+      return x.name.toLowerCase().includes(this.state.searchKey.toLowerCase());
+    });
     return (
       <ContainerComponent>
         {modalAddUser}
         {modalEditUser}
         <MDBContainer>
           <MDBBtn onClick={this.toggleModalAdd}>Add a new customer</MDBBtn>
-          <MDBTable>
-            <MDBTableHead color="primary-color" textWhite>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Address</th>
-                <th>Age</th>
-                <th>Sex</th>
-                <th>Options</th>
-              </tr>
-            </MDBTableHead>
-            <MDBTableBody>
-              {this.props.listCustomer.data.map((item, index) => {
-                return (
-                  <tr key={index}>
-                    <td>{item.id}</td>
-                    <td>{item.name}</td>
-                    <td>{item.phone}</td>
-                    <td>{item.address}</td>
-                    <td>{item.age}</td>
-                    <td>{item.sex}</td>
-                    <td>
-                      <MDBBtn onClick={this.toggleModalEdit}>Edit</MDBBtn>
-                      <MDBBtn onClick={this.delete}>Delete</MDBBtn>
-                    </td>
-                  </tr>
-                );
-              })}
-            </MDBTableBody>
-          </MDBTable>
+          <MDBCol md="6">
+            <MDBInput hint="Search" type="text" containerClass="mt-0" onChange={this.handleChange("searchKey")} />
+          </MDBCol>
+          <DataTable columns={columns} theme="solarized" data={data} pagination={true} />
         </MDBContainer>
       </ContainerComponent>
     );
@@ -135,6 +275,10 @@ const mapStateToProps = state => {
     listCustomer: state.screen.customer
   };
 };
-const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({ getAllCustomersAction }, dispatch);
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(
+    { getAllCustomersAction, addNewCustomerAction, editCustomerAction, deleteCustomerAction },
+    dispatch
+  );
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerScreen);
