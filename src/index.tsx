@@ -9,6 +9,8 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import { Redirect, Route, Switch } from "react-router";
 import { PersistGate } from "redux-persist/integration/react";
+import CartComponent from "screens/cart";
+import CheckoutComponent from "screens/checkout";
 import CategoryScreenComponent from "screens/dashboard/category/component";
 import DashBoardComponent from "screens/dashboard/component";
 import CustomerScreenComponent from "screens/dashboard/customer/component";
@@ -19,6 +21,7 @@ import ProductScreenComponent from "screens/dashboard/product/component";
 import UserScreenComponent from "screens/dashboard/user/component";
 import HomeComponent from "screens/home";
 import LoginComponent from "screens/login";
+import ProductComponent from "screens/product";
 import SignupComponent from "screens/signup";
 import StatsComponent from "screens/stats/component";
 import "./assets/scss/main.scss";
@@ -40,6 +43,15 @@ ReactDOM.render(
           <Redirect from="/" exact to="/home" />
           <Route path="/home">
             <Route exact path="/home" component={HomeComponent} />
+          </Route>
+          <Route path="/product">
+            <Route exact path="/product" component={ProductComponent} />
+          </Route>
+          <Route path="/cart">
+            <Route exact path="/cart" component={CartComponent} />
+          </Route>
+          <Route path="/checkout">
+            <Route exact path="/checkout" component={CheckoutComponent} />
           </Route>
           <Route path="/login">
             <Route exact path="/login" component={LoginComponent} />

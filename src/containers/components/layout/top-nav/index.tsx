@@ -1,4 +1,5 @@
 import {
+  MDBBadge,
   MDBCollapse,
   MDBDropdown,
   MDBDropdownItem,
@@ -34,41 +35,32 @@ export default class TopNavComponent extends React.Component {
       <Router>
         <MDBNavbar color="default-color" dark expand="md">
           <MDBNavbarBrand>
-            <strong className="white-text">Navbar</strong>
+            <strong className="white-text">HTTT</strong>
           </MDBNavbarBrand>
           <MDBNavbarToggler onClick={this.toggleCollapse} />
           <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
             <MDBNavbarNav left>
               <MDBNavItem active>
-                <MDBNavLink to="#!">Home</MDBNavLink>
+                <MDBNavLink to="/home">Home</MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
-                <MDBNavLink to="#!">Features</MDBNavLink>
+                <MDBNavLink to="/shopping">Shopping</MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>
-                <MDBNavLink to="#!">Pricing</MDBNavLink>
-              </MDBNavItem>
-              <MDBNavItem>
-                <MDBDropdown>
-                  <MDBDropdownToggle nav caret>
-                    <div className="d-none d-md-inline">Dropdown</div>
-                  </MDBDropdownToggle>
-                  <MDBDropdownMenu className="dropdown-default">
-                    <MDBDropdownItem href="#!">Settings</MDBDropdownItem>
-                    <MDBDropdownItem onClick={this.logout}>Logout</MDBDropdownItem>
-                  </MDBDropdownMenu>
-                </MDBDropdown>
+                <MDBNavLink to="/about">About</MDBNavLink>
               </MDBNavItem>
             </MDBNavbarNav>
             <MDBNavbarNav right>
               <MDBNavItem>
-                <MDBNavLink className="waves-effect waves-light" to="#!">
-                  <MDBIcon fab icon="twitter" />
-                </MDBNavLink>
-              </MDBNavItem>
-              <MDBNavItem>
-                <MDBNavLink className="waves-effect waves-light" to="#!">
-                  <MDBIcon fab icon="google-plus-g" />
+                <MDBNavLink className="waves-effect waves-light" to="/cart">
+                  <MDBIcon icon="cart-plus"></MDBIcon>
+                  <MDBBadge
+                    color="danger"
+                    style={{ borderRadius: 10, width: 20, height: 20, padding: 5 }}
+                    className="ml-1"
+                  >
+                    4
+                  </MDBBadge>
                 </MDBNavLink>
               </MDBNavItem>
               <MDBNavItem>

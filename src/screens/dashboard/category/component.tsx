@@ -128,7 +128,7 @@ class CategoryScreen extends React.Component<IProps> {
     const columns = [
       {
         name: "#",
-        selector: "index",
+        selector: "id",
         sortable: true,
         width: "50px"
       },
