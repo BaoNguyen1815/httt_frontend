@@ -1,5 +1,5 @@
 import TopNavComponent from "containers/components/layout/top-nav";
-import { MDBCard, MDBCardBody, MDBCardImage, MDBCardText, MDBCardTitle, MDBCol, MDBIcon, MDBRow } from "mdbreact";
+import { MDBBtn, MDBCol, MDBInput, MDBRow } from "mdbreact";
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -22,207 +22,95 @@ class CheckoutComponent extends React.Component<IState, IProps> {
       <MDBRow>
         <MDBCol sm="12" md="12" lg="12" xl="12" className="mx-auto my-auto">
           <TopNavComponent />
-          <section className="text-center my-5">
-            <h2 className="h1-responsive font-weight-bold text-center my-5">Our bestsellers</h2>
-            <p className="grey-text text-center w-responsive mx-auto mb-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit, error amet numquam iure provident
-              voluptate esse quasi, veritatis totam voluptas nostrum quisquam eum porro a pariatur veniam.
-            </p>
-            <MDBRow>
-              <MDBCol lg="3" md="6" className="mb-lg-0 mb-4">
-                <MDBCard cascade narrow ecommerce>
-                  <MDBCardImage
-                    cascade
-                    src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/1.jpg"
-                    top
-                    alt="sample photo"
-                    overlay="white-slight"
-                  />
-                  <MDBCardBody cascade className="text-center">
-                    <a href="#!" className="grey-text">
-                      <h5>Denim</h5>
-                    </a>
-                    <MDBCardTitle>
-                      <strong>
-                        <a href="#!">Denim trousers</a>
-                      </strong>
-                    </MDBCardTitle>
-                    <ul className="rating">
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon far icon="star" />
-                      </li>
-                    </ul>
-                    <MDBCardText>Neque porro quisquam est, qui dolorem ipsum quia dolor sit.</MDBCardText>
-                    <hr />
-                    <span className="float-left font-weight-bold">
-                      <strong>49$</strong>
-                    </span>
-                    <span className="float-right">
-                      <MDBIcon icon="shopping-cart" className="ml-10" />
-                      <MDBIcon icon="share-alt" className="ml-10" />
-                      <MDBIcon icon="heart" className="ml-10" />
-                    </span>{" "}
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
-              <MDBCol lg="3" md="6" className="mb-lg-0 mb-4">
-                <MDBCard cascade narrow ecommerce>
-                  <MDBCardImage
-                    cascade
-                    src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/2.jpg"
-                    top
-                    alt="sample photo"
-                    overlay="white-slight"
-                  />
-                  <MDBCardBody cascade className="text-center">
-                    <a href="#!" className="grey-text">
-                      <h5>Shoes</h5>
-                    </a>
-                    <MDBCardTitle>
-                      <strong>
-                        <a href="#!">High heels</a>
-                      </strong>
-                    </MDBCardTitle>
-                    <ul className="rating">
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                    </ul>
-                    <MDBCardText>Neque porro quisquam est, qui dolorem ipsum quia dolor sit.</MDBCardText>
-                    <hr />
-                    <span className="float-left font-weight-bold">
-                      <strong>49$</strong>
-                    </span>
-                    <span className="float-right">
-                      <MDBIcon icon="shopping-cart" className="ml-10" />
-                      <MDBIcon icon="share-alt" className="ml-10" />
-                      <MDBIcon icon="heart" className="ml-10" />
-                    </span>{" "}
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
-              <MDBCol lg="3" md="6" className="mb-lg-0 mb-4">
-                <MDBCard cascade narrow ecommerce>
-                  <MDBCardImage
-                    cascade
-                    src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/4.jpg"
-                    top
-                    alt="sample photo"
-                    overlay="white-slight"
-                  />
-                  <MDBCardBody cascade className="text-center">
-                    <a href="#!" className="grey-text">
-                      <h5>Outwear</h5>
-                    </a>
-                    <MDBCardTitle>
-                      <strong>
-                        <a href="#!">Brown coat</a>
-                      </strong>
-                    </MDBCardTitle>
-                    <ul className="rating">
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon far icon="star-half" />
-                      </li>
-                    </ul>
-                    <MDBCardText>Neque porro quisquam est, qui dolorem ipsum quia dolor sit.</MDBCardText>
-                    <hr />
-                    <span className="float-left font-weight-bold">
-                      <strong>49$</strong>
-                    </span>
-                    <span className="float-right">
-                      <MDBIcon icon="shopping-cart" className="ml-10" />
-                      <MDBIcon icon="share-alt" className="ml-10" />
-                      <MDBIcon icon="heart" className="ml-10" />
-                    </span>{" "}
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
-              <MDBCol lg="3" md="6" className="mb-lg-0 mb-4">
-                <MDBCard cascade narrow ecommerce>
-                  <MDBCardImage
-                    cascade
-                    src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/3.jpg"
-                    top
-                    alt="sample photo"
-                    overlay="white-slight"
-                  />
-                  <MDBCardBody cascade className="text-center">
-                    <a href="#!" className="grey-text">
-                      <h5>Blouses</h5>
-                    </a>
-                    <MDBCardTitle>
-                      <strong>
-                        <a href="#!">Shirt</a>
-                      </strong>
-                    </MDBCardTitle>
-                    <ul className="rating">
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon icon="star" />
-                      </li>
-                      <li>
-                        <MDBIcon far icon="star" />
-                      </li>
-                    </ul>
-                    <MDBCardText>Neque porro quisquam est, qui dolorem ipsum quia dolor sit.</MDBCardText>
-                    <hr />
-                    <span className="float-left font-weight-bold">
-                      <strong>49$</strong>
-                    </span>
-                    <span className="float-right">
-                      <MDBIcon icon="shopping-cart" className="ml-10" />
-                      <MDBIcon icon="share-alt" className="ml-10" />
-                      <MDBIcon icon="heart" className="ml-10" />
-                    </span>{" "}
-                  </MDBCardBody>
-                </MDBCard>
-              </MDBCol>
-            </MDBRow>
-          </section>
+          <MDBRow style={{ margin: 50 }}>
+            <MDBCol sm="12" md="12" lg="12" xl="12" style={{ textAlign: "center" }}>
+              <strong style={{ fontWeight: "bold", fontSize: 30 }}>Checkout</strong>
+            </MDBCol>
+          </MDBRow>
+          <MDBRow>
+            <MDBCol sm="4" md="2" lg="2" xl="2"></MDBCol>
+            <MDBCol
+              sm="12"
+              md="5"
+              lg="5"
+              xl="5"
+              style={{ backgroundColor: "#fff", border: "0.5px solid grey", padding: 30, borderRadius: 8 }}
+            >
+              <MDBRow>
+                <MDBCol sm="12" md="12" lg="12" xl="12">
+                  <MDBInput label="Fullname" disabled />
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol sm="12" md="12" lg="12" xl="12">
+                  <MDBInput label="Username" disabled />
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol sm="12" md="12" lg="12" xl="12">
+                  <MDBInput label="Address" disabled />
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <strong>Chọn hình thức giao hàng</strong>
+                <MDBCol sm="12" md="12" lg="12" xl="12">
+                  <MDBInput checked={true} label="Default unchecked" type="radio" id="radio1" />
+                  <MDBInput label="Default unchecked" type="radio" id="radio1" />
+                  <MDBInput label="Default unchecked" type="radio" id="radio1" />
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <strong>Chọn hình thức thanh toán</strong>
+                <MDBCol sm="12" md="12" lg="12" xl="12">
+                  <MDBInput checked={true} label="Default unchecked" type="radio" id="radio1" />
+                  <MDBInput label="Default unchecked" type="radio" id="radio1" />
+                  <MDBInput label="Default unchecked" type="radio" id="radio1" />
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol sm="12" md="12" lg="12" xl="12" style={{ marginTop: 20 }}>
+                  <MDBBtn color="primary">Thanh toán</MDBBtn>
+                </MDBCol>
+              </MDBRow>
+            </MDBCol>
+            <MDBCol
+              sm="12"
+              md="3"
+              lg="3"
+              xl="3"
+              style={{
+                backgroundColor: "#fff",
+                border: "0.5px solid grey",
+                padding: 30,
+                borderRadius: 8,
+                marginLeft: 20
+              }}
+            >
+              <MDBRow>
+                <MDBCol sm="10" md="3" lg="3" xl="3">
+                  <MDBInput label="Fullname" disabled />
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol sm="10" md="3" lg="3" xl="3">
+                  <MDBInput label="Username" disabled />
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <MDBCol sm="10" md="5" lg="5" xl="5">
+                  <MDBInput label="Address" disabled />
+                </MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <strong>Chọn hình thức giao hàng</strong>
+                <MDBCol sm="10" md="5" lg="5" xl="5"></MDBCol>
+              </MDBRow>
+              <MDBRow>
+                <strong>Chọn hình thức thanh toán</strong>
+                <MDBCol sm="10" md="5" lg="5" xl="5"></MDBCol>
+              </MDBRow>
+            </MDBCol>
+          </MDBRow>
         </MDBCol>
       </MDBRow>
     );
