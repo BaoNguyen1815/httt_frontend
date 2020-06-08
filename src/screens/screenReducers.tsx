@@ -4,6 +4,7 @@ import customersReducer from "screens/dashboard/customer/redux/reducers";
 import itemReducer from "screens/dashboard/item/redux/reducers";
 import orderReducer from "screens/dashboard/order/redux/reducers";
 import productReducer from "screens/dashboard/product/redux/reducers";
+import shippingReducer from "screens/dashboard/shipping/redux/reducers";
 import usersReducer from "screens/dashboard/user/redux/reducers";
 import accountInfoReducer from "screens/login/redux/reducers";
 
@@ -14,5 +15,6 @@ export default combineReducers({
   item: itemReducer,
   order: orderReducer,
   customer: customersReducer,
-  accountInfo: accountInfoReducer
+  accountInfo: accountInfoReducer,
+  shipping: shippingReducer
 });

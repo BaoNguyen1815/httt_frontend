@@ -145,8 +145,8 @@ class SignupComponent extends React.Component<IProps> {
                     </MDBInput>
                     <MDBSelect
                       options={this.state.option}
-                      selected="Choose Sex"
-                      label="Sex"
+                      selected="Choose Role"
+                      label="Role"
                       getValue={this.handleSelectChange}
                     />
                   </div>
