@@ -17,7 +17,9 @@ import CustomerScreenComponent from "screens/dashboard/customer/component";
 import ItemScreenComponent from "screens/dashboard/item/component";
 import AddOrderScreenComponent from "screens/dashboard/order/addOrder/component";
 import OrderScreenComponent from "screens/dashboard/order/component";
+import PaymentScreenComponent from "screens/dashboard/payment/component";
 import ProductScreenComponent from "screens/dashboard/product/component";
+import ShippingScreenComponent from "screens/dashboard/shipping/component";
 import UserScreenComponent from "screens/dashboard/user/component";
 import HomeComponent from "screens/home";
 import LoginComponent from "screens/login";
@@ -68,6 +70,8 @@ ReactDOM.render(
             <PrivateRoute exact path="/dashboard/order" component={OrderScreenComponent} />
             <PrivateRoute exact path="/dashboard/order/addOrder" component={AddOrderScreenComponent} />
             <PrivateRoute exact path="/dashboard/customer" component={CustomerScreenComponent} />
+            <PrivateRoute exact path="/dashboard/shipping" component={ShippingScreenComponent} />
+            <PrivateRoute exact path="/dashboard/payment" component={PaymentScreenComponent} />
           </PrivateRoute>
           <Route path="/stats">
             <Route exact path="/stats" component={StatsComponent} />
