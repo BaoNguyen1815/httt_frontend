@@ -13,7 +13,7 @@
   "author": "powergate",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "connected-react-router": "^6.6.1",
     "dotenv": "^8.2.0",
     "history": "^4.10.1",
